@@ -18,12 +18,16 @@ def bubble_sort(arr):
 # Implement Selection Sort:
 #    - Write a Python function `selection_sort(arr)` that takes a list `arr` as input and returns the sorted list using the Selection Sort algorithm.
 def selection_sort(arr):
-     for i in range(len(arr)):
-        for j in range(1, len(arr)-i):
-            if arr[j] < arr[j-1]:
-                temp = arr[j]
-                arr[j] = arr[j-1]
-                arr[j-1] = temp
+    # temp = 0
+    for i in range(len(arr)):
+        for j in range(len(arr)-i):
+            if arr[i] < arr[len(arr)-1-j]:
+                continue
+            else:
+                temp = arr[i]
+                arr[i] = arr[len(arr)-1-j]
+                arr[len(arr)-1-j] = temp
+
     return arr
 
 #    - Test your implementation with sample input lists and verify the correctness of the output.
@@ -35,6 +39,7 @@ def selection_sort(arr):
 # Implement Insertion Sort:
 #    - Write a Python function `insertion_sort(arr)` that takes a list `arr` as input and returns the sorted list using the Insertion Sort algorithm.
 def insertion_sort(arr):
+    
     return arr
 
 #    - Test your implementation with sample input lists and verify the correctness of the output.
@@ -68,7 +73,8 @@ def insertion_sort(arr):
 
 import random
 
-arr=random.sample(range(100),50)
+arr=random.sample(range(100),30)
 print(arr)
-sorted = bubble_sort(arr)
+# sorted = bubble_sort(arr)
+sorted = selection_sort(arr)
 print(sorted)

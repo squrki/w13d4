@@ -5,64 +5,55 @@ def bubble_sort(arr):
     for i in range(len(arr)):
         for j in range(1, len(arr)-i):
             if arr[j] < arr[j-1]:
-                temp = arr[j]
-                arr[j] = arr[j-1]
-                arr[j-1] = temp
+                arr[j], arr[j-1] = arr[j-1], arr[j]
             count += 1
     print(count)
     return arr
 
+def known_bubble(arr):
+    pass
+
 #    - Test your implementation with sample input lists and verify the correctness of the output.
-
 #    - Count the number of comparisons and swaps performed by Bubble Sort for each test case.
-
  
-
 # Implement Selection Sort:
 #    - Write a Python function `selection_sort(arr)` that takes a list `arr` as input and returns the sorted list using the Selection Sort algorithm.
 def selection_sort(arr):
     count = 0
-    for i in range(len(arr)):
-        for j in range(len(arr)-i):
-            if arr[i] < arr[len(arr)-1-j]:
-                count += 1
-                continue
-            else:
-                count += 1
-                temp = arr[i]
-                arr[i] = arr[len(arr)-1-j]
-                arr[len(arr)-1-j] = temp
+    n = len(arr)
+    for i in range(n):
+        count += 1
+        min = i
+        for j in range(i+1, n):
+            count += 1
+            if arr[min] > arr[j]:
+                min = j
+        arr[i], arr[min] = arr[min], arr[i]
     print(count)
     return arr
 
 #    - Test your implementation with sample input lists and verify the correctness of the output.
-
 #    - Count the number of comparisons and swaps performed by Selection Sort for each test case.
-
- 
 
 # Implement Insertion Sort:
 #    - Write a Python function `insertion_sort(arr)` that takes a list `arr` as input and returns the sorted list using the Insertion Sort algorithm.
 def insertion_sort(arr):
     count = 0
-    for i in range(len(arr)):
+    for i in range(1, len(arr)):
         temp = arr[i]
-        index = i
-        for j in range(i, len(arr)):
-            if arr[index] < arr[j]:
+        for j, val in enumerate(arr[:i]):
+            if val < temp:
                 count += 1
-                continue
-            else:
-                count += 1
-                temp = arr[j]
-                index = j
-        arr[index] = arr[i]
-        arr[i] = temp
+                temp, arr[j] = arr[j], temp
     print(count)
     return arr
 
-#    - Test your implementation with sample input lists and verify the correctness of the output.
+# Example usage:
+# arr = [12, 11, 13, 5, 6]
+# sorted_arr = insertion_sort(arr)
+# print("Sorted array is:", sorted_arr)
 
+#    - Test your implementation with sample input lists and verify the correctness of the output.
 #    - Count the number of comparisons and swaps performed by Insertion Sort for each test case.
 
  
@@ -91,12 +82,12 @@ def insertion_sort(arr):
 #    - Analyze the results and discuss any discrepancies or interesting findings.
 import random
 size = 1000
-sample = 100
+sample = 10
 randm=random.sample(range(size),sample)
 sorted = []
 reverse = []
 for i in range(sample):
-    sorted.append(i)
+    sorted.append(i+1)
     reverse.append(sample-i)
 print("sorted :",sorted)
 print("reverse:",reverse)
@@ -127,3 +118,5 @@ print("random")
 insertion_sort(randm)
 
 # bubble sort has less iterations than selection or insertion. Selection and insertion has the same number of iterations.
+
+
